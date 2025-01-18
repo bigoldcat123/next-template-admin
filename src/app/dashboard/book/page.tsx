@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import BreadC from "../components/breadC";
 import { Search } from 'lucide-react'
 import Link from "next/link";
+import BookTable from "../components/bookTable";
 type Props = {
   searchParams: Promise<{
     bookName: string,
@@ -23,7 +24,7 @@ export default async function BookPage({
         <Link href="/dashboard/book/create"><Button>Create New</Button></Link>
       </div>
       <div>
-        table
+        <BookTable/>
       </div>
       <div>
         pagination
