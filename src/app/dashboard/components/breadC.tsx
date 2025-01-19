@@ -1,15 +1,6 @@
 'use client'
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
 import { Slash } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 type Props = {
     breadCrumbs: {
         name: string,

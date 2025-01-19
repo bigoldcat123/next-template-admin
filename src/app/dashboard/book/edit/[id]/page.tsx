@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { geyBookById, updateBook } from "@/lib/action";
+import { getBookTypes, geyBookById, updateBook } from "@/lib/action";
 
 type Props = {
     params: Promise<{
@@ -26,6 +26,7 @@ export default async function EditPage({ params,searchParams }:Props) {
     if (page) {
         search.set("page", page)
     }
+    const genres = await getBookTypes()
     return (
         <>
             <BreadC breadCrumbs={[{ name: "book", url: "/dashboard/book?" + search }, { name: "edit", url: "/dashboard/book/edit/" + id }]} />
@@ -48,7 +49,7 @@ export default async function EditPage({ params,searchParams }:Props) {
                     <Textarea defaultValue={book.description} required name="description" id="Description" placeholder="Description" />
                 </div>
                 <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <TypeInput defaultValue={book.genres} />
+                    <TypeInput defaultValue={book.genres}  genres={genres}/>
                 </div>
                 <div>
                     <Button>Edit</Button>

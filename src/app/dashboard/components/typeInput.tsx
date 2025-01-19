@@ -1,20 +1,19 @@
 'use client'
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getBookTypes } from "@/lib/action";
 import { Genre } from "@prisma/client";
 import { useEffect, useId, useState } from "react";
 
-export default function TypeInput({defaultValue }:{defaultValue:Genre[]}) {
+export default function TypeInput({defaultValue ,genres}:{defaultValue:Genre[],genres:Genre[]}) {
     const [focus, setFocus] = useState(false);
-    const [genres, setGenres] = useState<Genre[] | null>(null);
+    // const [genres, setGenres] = useState<Genre[] | null>(null);
     const [query, setQuery] = useState('')
     const [selected, setSelected] = useState<Genre[]>(defaultValue)
     const id = useId()
     useEffect(() => {
-        getBookTypes().then(res => {
-            setGenres(res)
-        })
+        // getBookTypes().then(res => {
+        //     setGenres(res)
+        // })
         function clientClick(e: MouseEvent) {
             const effectArea = document.getElementById(id) as HTMLDivElement
             if (!effectArea.contains(e.target as Node)) {

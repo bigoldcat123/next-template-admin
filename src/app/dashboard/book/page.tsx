@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import BreadC from "../components/breadC";
-import { Search } from 'lucide-react'
 import Link from "next/link";
 import BookTable from "../components/bookTable";
 import SearchC from "../components/search";
@@ -11,7 +10,7 @@ import LoadingTable from "../components/loadingTable";
 type Props = {
   searchParams: Promise<{
     bookName: string,
-    page: string
+    page: string | undefined
   }>
 }
 export default async function BookPage({
@@ -28,8 +27,8 @@ export default async function BookPage({
         <Link href="/dashboard/book/create"><Button>Create New</Button></Link>
       </div>
       <div>
-        <Suspense key={page + bookName} fallback={<LoadingTable/>}>
-          <BookTable bookName={bookName} page={Number(page)} />
+        <Suspense key={'' + page + bookName + Date.now()} fallback={<LoadingTable/>}>
+          <BookTable bookName={bookName} page={Number(page ?? 1)} />
         </Suspense>
       </div>
       <div>

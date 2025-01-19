@@ -1,19 +1,13 @@
-'use client'
 import { Label } from "@/components/ui/label";
 import BreadC from "../../components/breadC";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createBook } from "@/lib/action";
+import { createBook, getBookTypes } from "@/lib/action";
 import { Button } from "@/components/ui/button";
 import TypeInput from "../../components/typeInput";
 
-// id          String    @id @default(cuid())
-//   title       String
-//   author      String
-//   description String
-//   image       String
-//   genres      Genre[]
-export default function CreatePage() {
+export default async function CreatePage() {
+    const genres =await getBookTypes()
     return (
         <>
             <BreadC breadCrumbs={[{ name: "book", url: "/dashboard/book" }, { name: "create", url: "/dashboard/book/create" }]} />
@@ -36,7 +30,7 @@ export default function CreatePage() {
                     <Textarea required name="description" id="Description" placeholder="Description" />
                 </div>
                 <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <TypeInput defaultValue={[]} />
+                    <TypeInput defaultValue={[]} genres={genres} />
                 </div>
                 <div>
                     <Button>Create</Button>

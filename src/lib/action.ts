@@ -123,3 +123,15 @@ export async function updateBook(formdata:FormData) {
     revalidatePath('/dashboard/book')
     redirect('/dashboard/book')
 }
+
+export async function deleteBook(id:string) {
+    await db.book.delete({
+        where: {
+            id
+        },
+        // include:{
+
+        // }
+    })
+    revalidatePath('/dashboard/book')
+}

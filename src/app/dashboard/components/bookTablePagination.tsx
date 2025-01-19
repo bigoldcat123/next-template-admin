@@ -1,7 +1,6 @@
 'use client'
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -15,6 +14,11 @@ export default function Pagnination({totalPages}:{totalPages:number}) {
         setCurrentPage(page)
         router.push('?' + s.toString())
     }
+    useEffect(() => {
+      if(Number(currentPage) > totalPages) {
+        handleClick(totalPages <= 0 ? 1 : totalPages)
+      }
+    },[currentPage,totalPages])
   return (
     <>
       <div className=" flex justify-center mt-4 gap-x-2">

@@ -1,12 +1,15 @@
-import { getBooksByPage } from "@/lib/action";
+import {getBooksByPage } from "@/lib/action";
 import Link from "next/link";
-import { Edit, Trash2 } from 'lucide-react'
+import { Edit } from 'lucide-react'
 import Image from "next/image";
+import DeleteButton from "./deleteButton";
 type Props = {
   page: number,
   bookName: string
 }
 export default async function BookTable({ page, bookName }: Props) {
+  console.log(page);
+  
   const books = await getBooksByPage(page, { bookName })
   const queryString = new URLSearchParams();
   if (bookName) {
@@ -36,7 +39,7 @@ export default async function BookTable({ page, bookName }: Props) {
         </thead>
         <tbody>
           {
-            books.map((book, index) => (
+            books.map((book) => (
               <tr key={book.id} className=" h-10 border-b bg-red-50">
                 <td className=" text-start">{book.id}</td>
                 <td className=" text-start">
@@ -51,7 +54,7 @@ export default async function BookTable({ page, bookName }: Props) {
                 <td className=" text-start">
                   <div className=" flex flex-row items-center space-x-2">
                     <Link href={"/dashboard/book/edit/" + book.id + '?' + queryString} className="hover:bg-red-100 p-1 rounded-md"><Edit className=" size-5 text-red-300" /></Link>
-                    <button className="  hover:bg-red-100 p-1 rounded-md" ><Trash2 className=" size-5 text-red-500" /></button>
+                    <DeleteButton id={book.id}/>
                   </div>
                 </td>
               </tr>

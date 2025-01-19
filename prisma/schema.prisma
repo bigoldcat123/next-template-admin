@@ -28,7 +28,7 @@ model Book {
   image       String
   genres      Genre[]
   borrowed    Boolean   @default(false)
-  borrowedBy  User?      @relation(fields: [user_id], references: [id])
+  borrowedBy  User?     @relation(fields: [user_id], references: [id])
   user_id     String?
   borrowed_at DateTime?
   returned_at DateTime?
