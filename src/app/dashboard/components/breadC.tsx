@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Slash } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 type Props = {
     breadCrumbs: {
         name: string,
@@ -17,8 +17,6 @@ type Props = {
     }[]
 }
 export default function BreadC({ breadCrumbs }: Props) {
-    const pathname = usePathname()
-
     return (
         <>
             <div className=" flex flex-row">

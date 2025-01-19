@@ -17,6 +17,7 @@ model User {
   password     String
   role         String
   borrowRecord Book[]
+  borrowedHistory BorrowedBookRecord[]
 }
 
 model Book {
@@ -31,10 +32,20 @@ model Book {
   user_id     String?
   borrowed_at DateTime?
   returned_at DateTime?
+  borrowedHistory BorrowedBookRecord[]
 }
 
 model Genre {
   id    String @id @default(cuid())
   name  String
   books Book[]
+}
+model BorrowedBookRecord {
+  id          String    @id @default(cuid())
+  book_id     String
+  book        Book       @relation(fields: [book_id], references: [id])
+  user_id     String
+  user        User       @relation(fields: [user_id], references: [id])
+  borrowed_at DateTime?
+  returned_at DateTime?
 }

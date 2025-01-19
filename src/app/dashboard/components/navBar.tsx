@@ -12,7 +12,7 @@ const menus = [
     },
     {
         name: "Book",
-        url: "/dashboard/book",
+        url: "/dashboard/book?page=1",
         icon: BookCopy
     }
 ]
