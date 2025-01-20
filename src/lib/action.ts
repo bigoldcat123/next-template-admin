@@ -48,7 +48,7 @@ type QueryBook = {
 const PAGE_SIZE = 10
 export async function getBooksByPage(page: number, query: QueryBook) {
     //sleep 1s
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    // await new Promise((resolve) => setTimeout(resolve, 500))
     const books = await db.book.findMany({
         where: {
             title: {
@@ -134,4 +134,16 @@ export async function deleteBook(id:string) {
         // }
     })
     revalidatePath('/dashboard/book')
+}
+export async function setBorrowed(id:string,borrowed:boolean) {
+    await db.book.update({
+        where: {
+            id
+        },
+        data: {
+            borrowed
+        }
+    })
+    // revalidatePath('/dashboard/book')
+    
 }

@@ -3,13 +3,12 @@ import Link from "next/link";
 import { Edit } from 'lucide-react'
 import Image from "next/image";
 import DeleteButton from "./deleteButton";
+import BorrowSwitch from "./borrowSwitch";
 type Props = {
   page: number,
   bookName: string
 }
 export default async function BookTable({ page, bookName }: Props) {
-  console.log(page);
-  
   const books = await getBooksByPage(page, { bookName })
   const queryString = new URLSearchParams();
   if (bookName) {
@@ -33,7 +32,7 @@ export default async function BookTable({ page, bookName }: Props) {
             <th className=" text-start">Book</th>
             <th className=" text-start">Description</th>
             <th className=" text-start">Author</th>
-            <th className=" text-start">Status</th>
+            <th className=" text-start">Borrowed</th>
             <th className=" text-start">Op</th>
           </tr>
         </thead>
@@ -50,7 +49,7 @@ export default async function BookTable({ page, bookName }: Props) {
                 </td>
                 <td className=" text-start "><p className=" max-w-28 line-clamp-1">{book.description} </p></td>
                 <td className=" text-start">{book.author}</td>
-                <td className=" text-start">{book.borrowed ? 'borrowed' : 'available'}</td>
+                <td className=" text-start"><BorrowSwitch id={book.id} borrowed={book.borrowed}/></td>
                 <td className=" text-start">
                   <div className=" flex flex-row items-center space-x-2">
                     <Link href={"/dashboard/book/edit/" + book.id + '?' + queryString} className="hover:bg-red-100 p-1 rounded-md"><Edit className=" size-5 text-red-300" /></Link>

@@ -7,12 +7,12 @@ for (let index = 0; index < 100; index++) {
                 author: "test",
                 description: "test",
                 title: "test",
-                image: "test"
+                image: "/test"
             }, {
                 author: "test",
                 description: "test",
                 title: "test",
-                image: "test"
+                image: "/test"
             }
         ]
     })
